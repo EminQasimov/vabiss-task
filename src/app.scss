@@ -13,3 +13,14 @@ nav {
   margin: auto;
   filter: grayscale(1);
 }
+
+#tree-list.dx-treelist .dx-row > td {
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 24px;
+}
+
+#tree-list .dx-texteditor-input {
+  min-height: 24px;
+  height: 24px;
+}

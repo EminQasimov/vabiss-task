@@ -66,12 +66,12 @@ export default function Structure() {
   }
 
   return (
-    <div id="tree-list-demo">
+    <div>
       <button onClick={populateFakeData}>Populate fake data</button>
       <button onClick={resetLocalStorage}>Reset all state and storage</button>
 
       <TreeList
-        id="employees"
+        id="tree-list"
         dataSource={dataSource}
         showRowLines={true}
         showBorders={true}
