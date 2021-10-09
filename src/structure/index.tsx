@@ -13,6 +13,7 @@ import {
   StringLengthRule,
   PatternRule,
   AsyncRule,
+  Button,
 } from "devextreme-react/tree-list"
 import { Template } from "devextreme-react/core/template"
 import Switch from "devextreme-react/switch"
@@ -139,6 +140,29 @@ export default function Structure() {
           editCellRender={renderSwitch}
         />
         <Template name="employeeTemplate" render={StatusCell} />
+
+        <Column type="buttons">
+          <Button
+            name="edit"
+            icon="icon icon-edit"
+            cssClass="custom-icon custom-icon-edit"
+          />
+          <Button
+            name="delete"
+            icon="icon icon-delete"
+            cssClass="custom-icon custom-icon-delete"
+          />
+          <Button
+            name="save"
+            icon="icon icon-save"
+            cssClass="custom-icon custom-icon-save"
+          />
+          <Button
+            name="cancel"
+            icon="icon icon-cancel"
+            cssClass="custom-icon custom-icon-cancel"
+          />
+        </Column>
       </TreeList>
     </div>
   )
