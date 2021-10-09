@@ -4,6 +4,7 @@ import Nav from "./components/nav"
 import Structure from "./structure"
 
 import "devextreme/dist/css/dx.material.blue.light.css"
+// import "devextreme/dist/css/dx.light.css"
 import "./app.scss"
 
 function App() {
