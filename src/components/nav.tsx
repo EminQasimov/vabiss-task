@@ -1,6 +1,16 @@
 import { useState } from "react"
 import { useHistory, useLocation } from "react-router-dom"
 import Tabs from "devextreme-react/tabs"
+import dxTabs from "devextreme/ui/tabs"
+
+type TabsSelectionChangeArgs = {
+  component?: dxTabs | undefined
+  element?: HTMLElement | undefined
+  model?: any
+  name?: string | undefined
+  fullName?: string | undefined
+  value?: any
+}
 
 export const tabs = [
   {
@@ -22,7 +32,7 @@ export default function Nav() {
     pathname === "/structure" ? 1 : 0
   )
 
-  function onTabsSelectionChanged(args) {
+  function onTabsSelectionChanged(args: TabsSelectionChangeArgs) {
     if (args.name == "selectedIndex") {
       setSelectedIndex(args.value)
     }
