@@ -1,6 +1,7 @@
-import { BrowserRouter, Route, Link } from "react-router-dom"
-import Structure from "./structure"
+import { BrowserRouter, Route } from "react-router-dom"
+
 import Nav from "./components/nav"
+import Structure from "./structure"
 
 import "devextreme/dist/css/dx.light.css"
 import "./app.scss"

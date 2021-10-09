@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useHistory } from "react-router-dom"
+import { useHistory, useLocation } from "react-router-dom"
 import Tabs from "devextreme-react/tabs"
 
 export const tabs = [
@@ -10,14 +10,17 @@ export const tabs = [
   },
   {
     id: 1,
-    text: "Structure",
+    text: "Go to Structure",
     icon: "tableproperties",
   },
 ]
 
 export default function Nav() {
-  const [selectedIndex, setSelectedIndex] = useState()
   let history = useHistory()
+  let { pathname } = useLocation()
+  const [selectedIndex, setSelectedIndex] = useState(() =>
+    pathname === "/structure" ? 1 : 0
+  )
 
   function onTabsSelectionChanged(args) {
     if (args.name == "selectedIndex") {
