@@ -9,15 +9,36 @@ import {
   SearchPanel,
   HeaderFilter,
   StateStoring,
+  RequiredRule,
+  StringLengthRule,
+  PatternRule,
+  AsyncRule,
 } from "devextreme-react/tree-list"
 import { Template } from "devextreme-react/core/template"
+import Switch from "devextreme-react/switch"
+
 import { employees } from "./data"
 import { dataSource } from "./store"
 
 const allowedPageSizes = [5, 10, 20]
+const namePattern = /^[^0-9]+$/
 
 function StatusCell(options: any) {
   return options.data?.status ? "Active" : "Deactive"
+}
+
+function renderSwitch(cellInfo: any) {
+  return (
+    <Switch
+      width={80}
+      switchedOnText="Active"
+      switchedOffText="Deactive"
+      defaultValue={cellInfo.value}
+      onValueChanged={(valueChangedEventArg) => {
+        cellInfo.setValue(valueChangedEventArg.value)
+      }}
+    />
+  )
 }
 
 export default function Structure() {
@@ -32,6 +53,16 @@ export default function Structure() {
     localStorage.clear()
     dataSource.store().clear()
     dataSource.reload()
+  }
+
+  function validateNameUniqueness({ value, data }: any) {
+    return dataSource
+      .store()
+      .load()
+      .then((items: any[]) => {
+        const found = items.find((item) => item.name === value)
+        return !(found && found.id !== data.id)
+      })
   }
 
   return (
@@ -71,7 +102,25 @@ export default function Structure() {
           // mode="popup"
         />
 
-        <Column dataField="name"></Column>
+        <Column dataField="name">
+          <RequiredRule />
+          <StringLengthRule
+            min={3}
+            message="Name should be at least 3 symbols long"
+          />
+          <StringLengthRule
+            max={30}
+            message="Name should be at most 30 symbols long"
+          />
+          <PatternRule
+            message="Do not use digits in the Name"
+            pattern={namePattern}
+          />
+          <AsyncRule
+            message="Name is already taken, it must be unique"
+            validationCallback={validateNameUniqueness}
+          />
+        </Column>
 
         <Column dataField="parent_id" caption="Structure">
           <Lookup
@@ -87,6 +136,7 @@ export default function Structure() {
           dataField="status"
           cellTemplate="employeeTemplate"
           width={300}
+          editCellRender={renderSwitch}
         />
         <Template name="employeeTemplate" render={StatusCell} />
       </TreeList>
