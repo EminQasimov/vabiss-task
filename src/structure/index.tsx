@@ -17,6 +17,7 @@ import {
 } from "devextreme-react/tree-list"
 import { Template } from "devextreme-react/core/template"
 import Switch from "devextreme-react/switch"
+import { Button as UIButton } from "devextreme-react/button"
 
 import { employees } from "./data"
 import { dataSource } from "./store"
@@ -31,9 +32,7 @@ function StatusCell(options: any) {
 function renderSwitch(cellInfo: any) {
   return (
     <Switch
-      width={80}
-      switchedOnText="Active"
-      switchedOffText="Deactive"
+      className="tree-list-switch"
       defaultValue={cellInfo.value}
       onValueChanged={(valueChangedEventArg) => {
         cellInfo.setValue(valueChangedEventArg.value)
@@ -68,8 +67,19 @@ export default function Structure() {
 
   return (
     <div>
-      <button onClick={populateFakeData}>Populate fake data</button>
-      <button onClick={resetLocalStorage}>Reset all state and storage</button>
+      <UIButton
+        text="Generate fake data"
+        type="default"
+        stylingMode="outlined"
+        onClick={populateFakeData}
+      />
+      <span />
+      <UIButton
+        text="Reset all state and storage"
+        type="danger"
+        stylingMode="outlined"
+        onClick={resetLocalStorage}
+      />
 
       <TreeList
         id="tree-list"
@@ -142,6 +152,8 @@ export default function Structure() {
         <Template name="employeeTemplate" render={StatusCell} />
 
         <Column type="buttons">
+          <Button name="add" icon="add" cssClass="custom-icon" />
+
           <Button
             name="edit"
             icon="icon icon-edit"
