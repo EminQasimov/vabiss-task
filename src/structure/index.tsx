@@ -13,7 +13,9 @@ function Structure() {
   function onInitNewRow(e) {
     e.data.id = undefined
     e.data.name = undefined
-    e.data.parent_id = undefined
+    if (!e.data.parent_id) {
+      e.data.parent_id = undefined
+    }
   }
   return (
     <>
