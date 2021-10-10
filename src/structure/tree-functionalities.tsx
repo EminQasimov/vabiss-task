@@ -6,11 +6,13 @@ import {
   SearchPanel,
   HeaderFilter,
   StateStoring,
+  Sorting,
 } from "devextreme-react/tree-list"
 
 const allowedPageSizes = [5, 10, 20]
 
 export const treeFunctionalities = [
+  <Sorting mode="single" />,
   <Scrolling mode="standard" />,
   <Paging enabled={true} defaultPageSize={5} />,
   <Pager

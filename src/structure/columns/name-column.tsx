@@ -8,6 +8,7 @@ import {
 import { dataSource } from "../data-source"
 
 const namePattern = /^[^0-9]+$/
+
 function validateNameUniqueness({ value, data }: any) {
   return dataSource
     .store()

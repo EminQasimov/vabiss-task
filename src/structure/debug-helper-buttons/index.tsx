@@ -8,13 +8,13 @@ export default function DebugHelperButtons() {
     employees.forEach((item) => {
       dataSource.store().insert({ ...item })
     })
-    dataSource.reload()
+    location.reload()
   }
 
   function resetLocalStorage() {
     localStorage.clear()
     dataSource.store().clear()
-    dataSource.reload()
+    location.reload()
   }
 
   return (
