@@ -10,13 +10,6 @@ import { treeFunctionalities } from "./tree-functionalities"
 import DebugHelperButtons from "./debug-helper-buttons"
 
 function Structure() {
-  function onInitNewRow(e) {
-    e.data.id = undefined
-    e.data.name = undefined
-    if (!e.data.parent_id) {
-      e.data.parent_id = undefined
-    }
-  }
   return (
     <>
       <DebugHelperButtons />
@@ -29,7 +22,14 @@ function Structure() {
         columnAutoWidth={true}
         keyExpr="id"
         parentIdExpr="parent_id"
-        onInitNewRow={onInitNewRow}
+        onInitNewRow={(e) => {
+          e.data.id = undefined
+          e.data.name = undefined
+
+          if (!e.data.parent_id) {
+            e.data.parent_id = undefined
+          }
+        }}
       >
         {treeFunctionalities}
         {nameColumn}
